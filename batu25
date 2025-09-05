@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Situs Rahasia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #191970;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selamat datang! Ada pesan untukmu...</h1>
+    <p>Mohon dengarkan baik-baik klik sekali agar dengar .</p>
+
+    <audio id="prankAudio" src="jangan dengar.mp3" preload="auto"></audio>
+
+    <script>
+        // Ambil elemen audio
+        const audio = document.getElementById('prankAudio');
+
+        // Fungsi untuk memainkan audio
+        function playPrankAudio() {
+            // Coba memainkan audio. Jika gagal, coba lagi setelah interaksi pengguna.
+            audio.play().catch(error => {
+                console.log("Autoplay, coba lagi saat pengguna berinteraksi.");
+                // Jika autoplay diblokir, tunggu klik pertama dari pengguna
+                document.body.addEventListener('click', () => {
+                    audio.play();
+                }, { once: true });
+            });
+        }
+
+        // Panggil fungsi playPrankAudio saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', playPrankAudio);
+
+    </script>
+</body>
+</html>
